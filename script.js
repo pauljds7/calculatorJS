@@ -11,6 +11,7 @@ let numCurrent = 0;
 let numPrevious = 0;
 let operationCurrent = none;
 let textCurrent = "";
+let dotActive = false;
 
 const output = document.querySelector("#output-main");
 //Event listeners
@@ -46,8 +47,20 @@ document.querySelector("#equal").addEventListener('click',
         updateWithOperation(equal);
     }
 );
-
+document.querySelector("#dot").addEventListener('click',
+    () => {
+        addDot();
+    }
+);
 //Logic functions
+
+function addDot() {
+    if (!dotActive) {
+        textCurrent += ".";
+        dotActive = true;
+    }
+}
+
 function updateWithNumber(num) {
     if (debugging) {console.log(num)}
     textCurrent += num;
@@ -82,5 +95,6 @@ function updateWithOperation(operation) {
     numPrevious = numCurrent;
     numCurrent = 0;
     textCurrent = "";
+    dotActive = false;
     operationCurrent = operation;
 }
