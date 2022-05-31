@@ -52,6 +52,11 @@ document.querySelector("#dot").addEventListener('click',
         addDot();
     }
 );
+document.querySelector("#plusminus").addEventListener('click',
+    () => {
+        plusMinus();
+    }
+);
 //Logic functions
 
 function addDot() {
@@ -59,6 +64,12 @@ function addDot() {
         textCurrent += ".";
         dotActive = true;
     }
+}
+
+function plusMinus() {
+    numCurrent *= -1;
+    textCurrent = numCurrent.toString();
+    output.innerText = textCurrent;
 }
 
 function updateWithNumber(num) {
