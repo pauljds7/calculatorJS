@@ -62,10 +62,24 @@ document.querySelector("#clear").addEventListener('click',
         clear();
     }
 );
+document.querySelector("#clear-everything").addEventListener('click',
+    () => {
+        clearEverything();
+    }
+);
 //Logic functions
 
 function clear() {
     numCurrent = 0;
+    textCurrent = "";
+    dotActive = false;
+    output.innerText = textCurrent;
+}
+
+function clearEverything() {
+    numCurrent = 0;
+    numPrevious = 0;
+    operationCurrent = none;
     textCurrent = "";
     dotActive = false;
     output.innerText = textCurrent;
