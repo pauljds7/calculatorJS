@@ -160,16 +160,17 @@ function updateWithOperation(operation) {
     textCurrent = numCurrent.toString();
     outputMain.innerText = textCurrent;
     outputHistory.innerText = textHistory;
+
+    numPrevious = numCurrent;
+    numCurrent = 0;
+    textCurrent = "";
+    dotActive = false;
     if (operation === equal) {
         operationCurrent = none;
         textHistory = "";
         outputHistory.innerText = textHistory;
         return;
     }
-
-    numPrevious = numCurrent;
-    numCurrent = 0;
-    textCurrent = "";
-    dotActive = false;
+    
     operationCurrent = operation;
 }
