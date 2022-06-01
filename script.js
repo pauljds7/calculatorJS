@@ -117,7 +117,7 @@ function plusMinus() {
 function updateWithNumber(num) {
     if (debugging) {console.log(num)}
     textCurrent += num;
-    numCurrent = parseFloat(parseFloat(textCurrent, 10).toFixed(13));
+    numCurrent = parseFloat(parseFloat(textCurrent, 10).toFixed(13), 10);
     outputMain.innerText = textCurrent;
 }
 
