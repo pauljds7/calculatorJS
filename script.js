@@ -1,5 +1,5 @@
 //Variables
-const debugging = true;
+const debugging = false;
 const none = Symbol("none");
 const plus = Symbol("plus");
 const minus = Symbol("minus");
@@ -57,7 +57,19 @@ document.querySelector("#plusminus").addEventListener('click',
         plusMinus();
     }
 );
+document.querySelector("#clear").addEventListener('click',
+    () => {
+        clear();
+    }
+);
 //Logic functions
+
+function clear() {
+    numCurrent = 0;
+    textCurrent = "";
+    dotActive = false;
+    output.innerText = textCurrent;
+}
 
 function addDot() {
     if (!dotActive) {
