@@ -67,7 +67,19 @@ document.querySelector("#clear-everything").addEventListener('click',
         clearEverything();
     }
 );
+document.querySelector("#percent").addEventListener('click',
+    () => {
+        percent();
+    }
+);
 //Logic functions
+
+function percent() {
+    numCurrent *= 0.01;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    output.innerText = textCurrent;
+}
 
 function clear() {
     numCurrent = 0;
