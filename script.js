@@ -11,9 +11,11 @@ let numCurrent = 0;
 let numPrevious = 0;
 let operationCurrent = none;
 let textCurrent = "";
+let textHistory = "";
 let dotActive = false;
 
-const output = document.querySelector("#output-main");
+const outputMain = document.querySelector("#output-main");
+const outputHistory = document.querySelector("#output-history");
 //Event listeners
 for (let i = 0; i < 10; i++) {
     document.querySelector("#n-"+i).addEventListener('click',
@@ -78,14 +80,14 @@ function percent() {
     numCurrent *= 0.01;
     textCurrent = numCurrent.toString();
     dotActive = true;
-    output.innerText = textCurrent;
+    outputMain.innerText = textCurrent;
 }
 
 function clear() {
     numCurrent = 0;
     textCurrent = "";
     dotActive = false;
-    output.innerText = textCurrent;
+    outputMain.innerText = textCurrent;
 }
 
 function clearEverything() {
@@ -93,8 +95,10 @@ function clearEverything() {
     numPrevious = 0;
     operationCurrent = none;
     textCurrent = "";
+    textHistory = "";
     dotActive = false;
-    output.innerText = textCurrent;
+    outputMain.innerText = textCurrent;
+    outputHistory.innerText = textHistory;
 }
 
 function addDot() {
@@ -107,18 +111,37 @@ function addDot() {
 function plusMinus() {
     numCurrent *= -1;
     textCurrent = numCurrent.toString();
-    output.innerText = textCurrent;
+    outputMain.innerText = textCurrent;
 }
 
 function updateWithNumber(num) {
     if (debugging) {console.log(num)}
     textCurrent += num;
     numCurrent = parseFloat(parseFloat(textCurrent, 10).toFixed(13));
-    output.innerText = textCurrent;
+    outputMain.innerText = textCurrent;
 }
 
 function updateWithOperation(operation) {
     if (debugging) {console.log(operation)}
+    
+    //History updates
+    textHistory += numCurrent.toString();
+    switch(operation) {
+        case plus:
+            textHistory += " + ";
+            break;
+        case minus:
+            textHistory += " - ";
+            break;
+        case times:
+            textHistory += " * ";
+            break;
+        case divide:
+            textHistory += " / ";
+            break;
+    }
+
+    //Continuous calculation logic
     switch(operationCurrent) {
         case plus:
             numCurrent = numPrevious + numCurrent;
@@ -135,9 +158,12 @@ function updateWithOperation(operation) {
     }
     
     textCurrent = numCurrent.toString();
-    output.innerText = textCurrent;
+    outputMain.innerText = textCurrent;
+    outputHistory.innerText = textHistory;
     if (operation === equal) {
         operationCurrent = none;
+        textHistory = "";
+        outputHistory.innerText = textHistory;
         return;
     }
 
