@@ -7,7 +7,7 @@ body {
     margin: 0;
 }
 
-#wrapper {
+.wrapper-normal {
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
@@ -24,7 +24,7 @@ body {
 }
 
 
-#calculator {
+.calculator-normal {
     grid-column-start: span 6;
     grid-row-start: span 10;
 
@@ -38,7 +38,38 @@ body {
     padding: 15px;
 }
 
-#output-history {
+.wrapper-sci {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+
+    display: grid;
+    grid-template-columns: repeat(13, 5vw);
+    grid-template-rows: repeat(10, 5vh);
+    justify-content: center;
+    align-content: center;
+}
+
+
+.calculator-sci {
+    grid-column-start: span 12;
+    grid-row-start: span 10;
+
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-gap: 5px;
+
+    border: 1px solid black;
+    background-color: #999;
+    padding: 15px;
+}
+
+.output-history-normal {
     grid-column-start: span 4;
 
     background-color: white;
@@ -49,8 +80,30 @@ body {
     align-items: center;
 }
 
-#output-main {
+.output-main-normal {
     grid-column-start: span 4;
+
+    background-color: white;
+    font-size: 100%;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.output-history-sci {
+    grid-column-start: span 9;
+
+    background-color: white;
+    font-size: 100%;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.output-main-sci {
+    grid-column-start: span 9;
 
     background-color: white;
     font-size: 100%;
@@ -63,4 +116,8 @@ body {
 .button {
     border: 1px solid black;
     background-color: #666;
+}
+
+.hidden {
+    display: none;
 }

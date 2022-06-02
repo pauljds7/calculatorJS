@@ -13,9 +13,13 @@ let operationCurrent = none;
 let textCurrent = "";
 let textHistory = "";
 let dotActive = false;
+let scientificMode = false;
 
-const outputMain = document.querySelector("#output-main");
-const outputHistory = document.querySelector("#output-history");
+const outputMain = document.querySelector(".output-main-normal");
+const outputHistory = document.querySelector(".output-history-normal");
+const buttonsScientific = document.querySelectorAll(".scientific");
+const wrapper = document.querySelector(".wrapper-normal");
+const calculator = document.querySelector(".calculator-normal")
 //Event listeners
 for (let i = 0; i < 10; i++) {
     document.querySelector("#n-"+i).addEventListener('click',
@@ -74,8 +78,12 @@ document.querySelector("#percent").addEventListener('click',
         percent();
     }
 );
-//Logic functions
-
+document.querySelector("#change-mode").addEventListener('click',
+    () => {
+        toggleScientificMode();
+    }
+);
+//Calculator Logic functions
 function percent() {
     numCurrent *= 0.01;
     textCurrent = numCurrent.toString();
@@ -112,6 +120,35 @@ function plusMinus() {
     numCurrent *= -1;
     textCurrent = numCurrent.toString();
     outputMain.innerText = textCurrent;
+}
+
+
+//Program logic functions
+function toggleScientificMode() {
+    //Enable each of the hidden buttons
+    buttonsScientific.forEach(
+        (elem) => {
+            if (scientificMode) {
+                elem.classList.add("hidden");                 
+            } else {
+                elem.classList.remove("hidden");
+            }
+        }
+    );
+    //Change size and grid to accompany more buttons
+    if (scientificMode) {
+        wrapper.classList.replace("wrapper-sci", "wrapper-normal");
+        calculator.classList.replace("calculator-sci", "calculator-normal");
+        outputMain.classList.replace("output-main-sci","output-main-normal");
+        outputHistory.classList.replace("output-history-sci","output-history-normal");
+    } else {
+        wrapper.classList.replace("wrapper-normal", "wrapper-sci");
+        calculator.classList.replace("calculator-normal", "calculator-sci");
+        outputMain.classList.replace("output-main-normal","output-main-sci");
+        outputHistory.classList.replace("output-history-normal","output-history-sci");
+    }
+
+    scientificMode = !scientificMode;
 }
 
 function updateWithNumber(num) {
