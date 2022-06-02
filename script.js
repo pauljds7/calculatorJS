@@ -15,11 +15,11 @@ let textHistory = "";
 let dotActive = false;
 let scientificMode = false;
 
-const outputMain = document.querySelector(".output-main-normal");
-const outputHistory = document.querySelector(".output-history-normal");
+const outputMain = document.querySelector("#output-main");
+const outputHistory = document.querySelector("#output-history");
 const buttonsScientific = document.querySelectorAll(".scientific");
-const wrapper = document.querySelector(".wrapper-normal");
-const calculator = document.querySelector(".calculator-normal")
+const wrapper = document.querySelector("#wrapper");
+const calculator = document.querySelector("#calculator")
 //Event listeners
 for (let i = 0; i < 10; i++) {
     document.querySelector("#n-"+i).addEventListener('click',
