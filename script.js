@@ -84,7 +84,43 @@ document.querySelector("#change-mode").addEventListener('click',
         toggleScientificMode();
     }
 );
+document.querySelector("#sin").addEventListener('click',
+    () => {
+        sin();
+    }
+);
+document.querySelector("#cos").addEventListener('click',
+    () => {
+        cos();
+    }
+);
+document.querySelector("#tan").addEventListener('click',
+    () => {
+        tan();
+    }
+);
 //Calculator Logic functions
+function sin() {
+    updateWithOperation(equal);
+    numCurrent = Math.sin(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function cos() {
+    updateWithOperation(equal);
+    numCurrent = Math.cos(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function tan() {
+    updateWithOperation(equal);
+    numCurrent = Math.tan(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
 function percent() {
     numCurrent *= 0.01;
     textCurrent = numCurrent.toString();
@@ -126,7 +162,7 @@ function plusMinus() {
 
 //Program logic functions
 function toggleScientificMode() {
-    //Enable each of the hidden buttons
+    //Enable/disable each of the scientific buttons
     buttonsScientific.forEach(
         (elem) => {
             if (scientificMode) {
