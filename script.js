@@ -19,7 +19,8 @@ const outputMain = document.querySelector("#output-main");
 const outputHistory = document.querySelector("#output-history");
 const buttonsScientific = document.querySelectorAll(".scientific");
 const wrapper = document.querySelector("#wrapper");
-const calculator = document.querySelector("#calculator")
+const calculator = document.querySelector("#calculator");
+const buttonChange = document.querySelector("#change-mode")
 //Event listeners
 for (let i = 0; i < 10; i++) {
     document.querySelector("#n-"+i).addEventListener('click',
@@ -141,11 +142,14 @@ function toggleScientificMode() {
         calculator.classList.replace("calculator-sci", "calculator-normal");
         outputMain.classList.replace("output-main-sci","output-main-normal");
         outputHistory.classList.replace("output-history-sci","output-history-normal");
+        buttonChange.innerText = "Go scientific";
+
     } else {
         wrapper.classList.replace("wrapper-normal", "wrapper-sci");
         calculator.classList.replace("calculator-normal", "calculator-sci");
         outputMain.classList.replace("output-main-normal","output-main-sci");
         outputHistory.classList.replace("output-history-normal","output-history-sci");
+        buttonChange.innerText = "Go normal";
     }
 
     scientificMode = !scientificMode;
