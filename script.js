@@ -7,6 +7,7 @@ const times = Symbol("times");
 const divide = Symbol("divide");
 const equal = Symbol("equal");
 const root = Symbol("root");
+const power = Symbol("power");
 
 let numCurrent = 0;
 let numPrevious = 0;
@@ -110,7 +111,64 @@ document.querySelector("#root").addEventListener('click',
         updateWithOperation(root);
     }
 );
+document.querySelector("#exp").addEventListener('click',
+    () => {
+        calcExp();
+    }
+);
+document.querySelector("#xy").addEventListener('click',
+    () => {
+        updateWithOperation(power);
+    }
+);
+document.querySelector("#square").addEventListener('click',
+    () => {
+        calcSquare();
+    }
+);
+document.querySelector("#cube").addEventListener('click',
+    () => {
+        calcCube();
+    }
+);
+document.querySelector("#factorial").addEventListener('click',
+    () => {
+        calcFactorial();
+    }
+);
 //Calculator Logic functions
+function calcSquare() {
+    updateWithOperation(equal);
+    numCurrent = numPrevious * numPrevious;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcCube() {
+    updateWithOperation(equal);
+    numCurrent = numPrevious * numPrevious * numPrevious;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcFactorial() {
+    updateWithOperation(equal);
+    let num = 1
+    for (let i = 1; i <= numPrevious; i++) {
+        num *= i;
+    }
+    numCurrent = num;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcExp() {
+    updateWithOperation(equal);
+    numCurrent = Math.exp(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
 function calcSqrt() {
     updateWithOperation(equal);
     numCurrent = Math.sqrt(numPrevious);
@@ -235,7 +293,10 @@ function updateWithOperation(operation) {
             textHistory += " / ";
             break;
         case root:
-            textHistory += " √ "
+            textHistory += " √ ";
+            break;
+        case power:
+            textHistory += " ^ ";
             break;
     }
 
@@ -255,6 +316,9 @@ function updateWithOperation(operation) {
             break;
         case root:
             numCurrent = Math.pow(numPrevious, 1/numCurrent);
+            break;
+        case power:
+            numCurrent = Math.pow(numPrevious, numCurrent);
             break;
     }
     
