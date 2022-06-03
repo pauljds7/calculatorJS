@@ -6,6 +6,7 @@ const minus = Symbol("minus");
 const times = Symbol("times");
 const divide = Symbol("divide");
 const equal = Symbol("equal");
+const root = Symbol("root");
 
 let numCurrent = 0;
 let numPrevious = 0;
@@ -99,7 +100,24 @@ document.querySelector("#tan").addEventListener('click',
         tan();
     }
 );
+document.querySelector("#sqrt").addEventListener('click',
+    () => {
+        calcSqrt();
+    }
+);
+document.querySelector("#root").addEventListener('click',
+    () => {
+        updateWithOperation(root);
+    }
+);
 //Calculator Logic functions
+function calcSqrt() {
+    updateWithOperation(equal);
+    numCurrent = Math.sqrt(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
 function sin() {
     updateWithOperation(equal);
     numCurrent = Math.sin(numPrevious);
@@ -216,6 +234,9 @@ function updateWithOperation(operation) {
         case divide:
             textHistory += " / ";
             break;
+        case root:
+            textHistory += " √ "
+            break;
     }
 
     //Continuous calculation logic
@@ -231,6 +252,9 @@ function updateWithOperation(operation) {
             break;
         case divide:
             numCurrent = numPrevious / numCurrent;
+            break;
+        case root:
+            numCurrent = Math.pow(numPrevious, 1/numCurrent);
             break;
     }
     
