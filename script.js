@@ -188,7 +188,19 @@ document.querySelector("#inverse").addEventListener('click',
         calcInverse();
     }
 );
+document.querySelector("#ten-power").addEventListener('click',
+    () => {
+        tenPower();
+    }
+);
 //Calculator Logic functions
+function tenPower() {
+    updateWithOperation(equal);
+    numCurrent = Math.pow(10, numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
 function calcInverse() {
     updateWithOperation(equal);
     numCurrent = 1 / numPrevious;
