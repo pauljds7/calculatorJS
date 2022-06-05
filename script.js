@@ -9,6 +9,7 @@ const equal = Symbol("equal");
 const root = Symbol("root");
 const power = Symbol("power");
 const log = Symbol("log");
+const mod = Symbol("mod");
 
 let numCurrent = 0;
 let numPrevious = 0;
@@ -154,15 +155,68 @@ document.querySelector("#log").addEventListener('click',
 );
 document.querySelector("#pi").addEventListener('click',
     () => {
-        pi(log);
+        pi();
     }
 );
 document.querySelector("#e").addEventListener('click',
     () => {
-        e(log);
+        e();
+    }
+);
+document.querySelector("#deg").addEventListener('click',
+    () => {
+        calcDegree();
+    }
+);
+document.querySelector("#rad").addEventListener('click',
+    () => {
+        calcRadian();
+    }
+);
+document.querySelector("#mod").addEventListener('click',
+    () => {
+        updateWithOperation(mod);
+    }
+);
+document.querySelector("#abs").addEventListener('click',
+    () => {
+        calcAbs();
+    }
+);
+document.querySelector("#inverse").addEventListener('click',
+    () => {
+        calcInverse();
     }
 );
 //Calculator Logic functions
+function calcInverse() {
+    updateWithOperation(equal);
+    numCurrent = 1 / numPrevious;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcAbs() {
+    updateWithOperation(equal);
+    numCurrent = Math.abs(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcDegree() {
+    updateWithOperation(equal);
+    numCurrent = numPrevious * 180/Math.PI;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcRadian() {
+    updateWithOperation(equal);
+    numCurrent = numPrevious * Math.PI/180;
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
 function e() {
     numCurrent = Math.E;
     textCurrent = numCurrent.toString();
@@ -351,6 +405,9 @@ function updateWithOperation(operation) {
         case log:
             textHistory += " log ";
             break;
+        case mod:
+            textHistory += " mod ";
+            break;
     }
 
     //Continuous calculation logic
@@ -375,6 +432,9 @@ function updateWithOperation(operation) {
             break;
         case log:
             numCurrent = Math.log(numPrevious)/Math.log(numCurrent);
+            break;
+        case mod:
+            numCurrent = numPrevious % numCurrent;
             break;
     }
     
