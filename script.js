@@ -8,6 +8,7 @@ const divide = Symbol("divide");
 const equal = Symbol("equal");
 const root = Symbol("root");
 const power = Symbol("power");
+const log = Symbol("log");
 
 let numCurrent = 0;
 let numPrevious = 0;
@@ -136,7 +137,56 @@ document.querySelector("#factorial").addEventListener('click',
         calcFactorial();
     }
 );
+document.querySelector("#ln").addEventListener('click',
+    () => {
+        calcLn();
+    }
+);
+document.querySelector("#lg").addEventListener('click',
+    () => {
+        calcLg();
+    }
+);
+document.querySelector("#log").addEventListener('click',
+    () => {
+        updateWithOperation(log);
+    }
+);
+document.querySelector("#pi").addEventListener('click',
+    () => {
+        pi(log);
+    }
+);
+document.querySelector("#e").addEventListener('click',
+    () => {
+        e(log);
+    }
+);
 //Calculator Logic functions
+function e() {
+    numCurrent = Math.E;
+    textCurrent = numCurrent.toString();
+    outputMain.innerText = textCurrent;
+}
+function pi() {
+    numCurrent = Math.PI;
+    textCurrent = numCurrent.toString();
+    outputMain.innerText = textCurrent;
+}
+function calcLg() {
+    updateWithOperation(equal);
+    numCurrent = Math.log10(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
+function calcLn() {
+    updateWithOperation(equal);
+    numCurrent = Math.log(numPrevious);
+    textCurrent = numCurrent.toString();
+    dotActive = true;
+    outputMain.innerText = textCurrent;
+}
 function calcSquare() {
     updateWithOperation(equal);
     numCurrent = numPrevious * numPrevious;
@@ -298,6 +348,9 @@ function updateWithOperation(operation) {
         case power:
             textHistory += " ^ ";
             break;
+        case log:
+            textHistory += " log ";
+            break;
     }
 
     //Continuous calculation logic
@@ -319,6 +372,9 @@ function updateWithOperation(operation) {
             break;
         case power:
             numCurrent = Math.pow(numPrevious, numCurrent);
+            break;
+        case log:
+            numCurrent = Math.log(numPrevious)/Math.log(numCurrent);
             break;
     }
     
