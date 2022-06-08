@@ -227,6 +227,30 @@ document.addEventListener("keydown",
             case "9":
                 updateWithNumber(9);
                 break;
+            case "Enter":
+                updateWithOperation(equal);
+                break;
+            case "+":
+                updateWithOperation(plus);
+                break;
+            case "-":
+                updateWithOperation(minus);
+                break;
+            case "*":
+                updateWithOperation(times);
+                break;
+            case "/":
+                updateWithOperation(divide);
+                break;
+            case "Backspace":
+                clear();
+                break;
+            case "Delete":
+                clearEverything();
+                break;
+            case ".":
+                addDot();
+                break;
         }
         event.preventDefault();
     }
