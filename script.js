@@ -193,6 +193,44 @@ document.querySelector("#ten-power").addEventListener('click',
         tenPower();
     }
 );
+//Keyboard listener
+document.addEventListener("keydown",
+    (event) => {
+        switch(event.key) {
+            case "0":
+                updateWithNumber(0);
+                break;
+            case "1":
+                updateWithNumber(1);
+                break;
+            case "2":
+                updateWithNumber(2);
+                break;
+            case "3":
+                updateWithNumber(3);
+                break;
+            case "4":
+                updateWithNumber(4);
+                break;
+            case "5":
+                updateWithNumber(5);
+                break;
+            case "6":
+                updateWithNumber(6);
+                break;
+            case "7":
+                updateWithNumber(7);
+                break;
+            case "8":
+                updateWithNumber(8);
+                break;
+            case "9":
+                updateWithNumber(9);
+                break;
+        }
+        event.preventDefault();
+    }
+);
 //Calculator Logic functions
 function tenPower() {
     updateWithOperation(equal);
